@@ -1,0 +1,20 @@
+from svo import *
+from extraction import *
+
+sentences = [
+    'A rare black squirrel has become a regular visitor to a suburban garden',
+    'The apparatus includes a resistive element having an impedance',
+    'Some mice were hunted by the cat',
+    'A man who has a house on the island bought a large plane',
+    'They win the lottery and after that they bought many cola',
+    'After she ate the pie, Emma visited Tony who had beautiful eyes',
+    'The metal is made up of irregularly shaped grains, and these tiny grains ,are the bundling blocks of the metal',
+    'He has already read this book'
+]
+
+triples = []
+for sent in sentences:
+    triples += find_triples(sent)
+
+for triple in triples:
+    print triple.__str__()
