@@ -1,0 +1,5 @@
+The resistive element includes a first contact point connected to a capacitor terminal, a second contact point connected to a circuit board plane, and resistive material connected to the first and second contact points.
+An electrical resistance apparatus adapted for the measurement of the position of the throttle blade of an internal combustion engine is disclosed.
+A generally cylindrical rotor mounts within the housing and electrically couples the two tracks by means of a U-shaped conductive wiper that bridges the separation between the resistive tracks.
+The rotor is mechanically connected to the throttle blade of the internal combustion engine and rotates therewith.
+Integral with the resistive track developing the position signal is a protection resistor providing shorting protection in case of the misconnection of the power and signal terminals.
