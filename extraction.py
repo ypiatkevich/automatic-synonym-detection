@@ -156,9 +156,9 @@ def find_triples(sentence):
     # t.pretty_print()
     trees = find_trees_to_analyze(t)
     for tree in trees:
-        tree.pretty_print()
+        # tree.pretty_print()
         svo = find_triple(tree)
-        print svo.__str__()
+        # print svo.__str__()
         triples.append(svo)
 
     return triples
