@@ -21,12 +21,15 @@ def untokenize_text(words):
 
 
 def lemmatize_text(text):
-    word_lemmatizer = nltk.WordNetLemmatizer()
     words = split_into_words(text)
-    lemmatized_words = [word_lemmatizer.lemmatize(
-        word_lemmatizer.lemmatize(word_lemmatizer.lemmatize(word, 'v'), 'n'), 'a') for word in words]
+    lemmatized_words = [lemmatize_word(word) for word in words]
 
     return untokenize_text(lemmatized_words)
+
+
+def lemmatize_word(word):
+    word_lemmatizer = nltk.WordNetLemmatizer()
+    return word_lemmatizer.lemmatize(word_lemmatizer.lemmatize(word_lemmatizer.lemmatize(word, 'v'), 'n'), 'a')
 
 
 def lemmatize_sentences(sentences):
