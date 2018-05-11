@@ -3,3 +3,15 @@ An electrical resistance apparatus adapted for the measurement of the position o
 A generally cylindrical rotor mounts within the housing and electrically couples the two tracks by means of a U-shaped conductive wiper that bridges the separation between the resistive tracks.
 The rotor is mechanically connected to the throttle blade of the internal combustion engine and rotates therewith.
 Integral with the resistive track developing the position signal is a protection resistor providing shorting protection in case of the misconnection of the power and signal terminals.
+
+Diesel fuels involves converting the triglycerides  in vegetable oil.
+Sometimes, gasoline also contains ethanol as an alternative fuel, for economic, political or environmental reasons.
+Straight-run gasoline can be also used as a feedstock into steam-crackers to produce olefins.
+Gasoline can also contain other organic compounds, such as organic ethers plus small levels of contaminants.
+Gasoline, when used in high-compression internal combustion engines, tends to autoignite -LRB- detonate -RRB- causing damaging engine knocking.
+Gasoline produces 8.74 kilograms of carbon dioxide.
+Diesel also poses a reduced risk of fire during an accident and produces fewer emissions than gas.
+In the past, diesel fuel contained higher quantities of sulfur.
+The engine and generator will use diesel and not petrol as fuel.
+Fossil fuels contain high percentages of carbon and include coal, petroleum, and natural gas.
+The important properties which are used to characterize diesel fuel include cetane number (or cetane index), fuel volatility, density, viscosity, cold behavior, and sulfur content.
