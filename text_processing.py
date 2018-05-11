@@ -27,6 +27,10 @@ def lemmatize_text(text):
     return untokenize_text(lemmatized_words)
 
 
+def lemmatize_words(words):
+    return [lemmatize_word(word) for word in words]
+
+
 def lemmatize_word(word):
     word_lemmatizer = nltk.WordNetLemmatizer()
     return word_lemmatizer.lemmatize(word_lemmatizer.lemmatize(word_lemmatizer.lemmatize(word, 'v'), 'n'), 'a')
