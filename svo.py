@@ -10,11 +10,11 @@ class SVO:
         if obj_params is None:
             obj_params = []
         self.subject = self.get_formatted_value(subject)
-        self.subject_params = subject_params
+        self.subject_params = [(param[0], self.get_formatted_value(param[1])) for param in subject_params]
         self.action = self.get_formatted_value(action)
-        self.action_params = action_params
+        self.action_params = [(param[0], self.get_formatted_value(param[1])) for param in action_params]
         self.object = self.get_formatted_value(obj)
-        self.object_params = obj_params
+        self.object_params = [(param[0], self.get_formatted_value(param[1])) for param in obj_params]
 
     def __str__(self):
         return '{{\n\t{0}: {1},\n\t{2}: {3},\n\t{4}: {5}\n}}'.format(self.subject, self.subject_params, self.action,
@@ -35,7 +35,7 @@ class SVO:
 
     @subject_params.setter
     def subject_params(self, params):
-        self.subject_params = lemmatize_words(params)
+        self.subject_params = [(param[0], self.get_formatted_value(param[1])) for param in params]
 
     @property
     def action(self):
