@@ -35,7 +35,37 @@ def move_to_last_vp(tree):
         return tree
 
 
-def find_subject(tree):
+def get_subject(tree):
+    subj_np_tree = get_subject_np_paren_tree(tree)
+
+    subj_tree = None
+    subj = None
+
+    if subj_np_tree is not None:
+        subj_tree = get_subject_tree(subj_np_tree)
+
+    if subj_tree is not None:
+        subj = get_subject_value(subj_tree)
+
+    return subj
+
+
+def get_subject_params(tree):
+    subj_np_tree = get_subject_np_paren_tree(tree)
+
+    subj_tree = None
+    params = []
+
+    if subj_np_tree is not None:
+        subj_tree = get_subject_tree(subj_np_tree)
+
+    if subj_tree is not None:
+        params = get_subject_param_values(subj_tree)
+
+    return params
+
+
+def get_subject_np_paren_tree(tree):
     q = Queue.LifoQueue()
     q.put(tree)
     while not q.empty():
@@ -44,11 +74,11 @@ def find_subject(tree):
         labels = get_sibling_labels(cur_tree)
         if ('WHNP' in labels) and ('S' in labels):
             cur_tree = cur_tree.parent()
-            return get_subject(cur_tree)
+            return cur_tree
 
         if cur_tree.label() in ['NP']:
             cur_tree = cur_tree.parent()
-            return get_subject(cur_tree)
+            return cur_tree
 
         for sub in cur_tree:
             if not isinstance(sub[0], unicode):
@@ -56,13 +86,38 @@ def find_subject(tree):
                     q.put(sub)
 
 
-def get_subject(tree):
+def get_subject_tree(tree):
     for child in tree:
         if child.label() in ['NP', 'PP']:
             node = move_to_last_np(child)
-            for sibling in node:
-                if sibling.label() in ['NN', 'NNS', 'PRP', 'NNP', 'NNPS']:
-                    return sibling[0]
+            return node
+
+
+def get_subject_value(tree):
+    labels = get_sibling_labels(tree)
+    if labels.__contains__('CC'):
+        ind = labels.index('CC')
+    else:
+        ind = len(tree)
+
+    for i in range(ind, 0, -1):
+        if tree[i - 1].label() in ['NN', 'NNS', 'PRP', 'NNP', 'NNPS']:
+            return tree[i - 1][0]
+
+
+def get_subject_param_values(tree):
+    labels = get_sibling_labels(tree)
+    if labels.__contains__('CC'):
+        ind = labels.index('CC')
+    else:
+        ind = len(tree)
+
+    for i in range(ind, 0, -1):
+        if tree[i - 1].label() in ['NN', 'NNS', 'PRP', 'NNP', 'NNPS']:
+            subj_ind = i - 1
+            return [(tree[i].label(), tree[i][0]) for i in range(ind) if
+                    i != subj_ind and isinstance(tree[i][0], unicode) and tree[i].label() not in ['DT', 'JJS', 'JJR',
+                                                                                                  'CD']]
 
 
 def find_action(tree):
@@ -83,20 +138,54 @@ def get_action(tree):
                     return sibling[0]
 
 
-def find_object(tree):
+def get_object_np_tree(tree):
     if tree.label() in ['SBAR']:
         for sub in tree:
             if sub.label() in ['S']:
-                return get_object(sub)
+                return sub
     else:
-        return get_object(tree)
+        return tree
 
 
-def get_object(tree):
+def get_object_tree(tree):
     for child in tree:
         if child.label() in ['VP']:
             node = move_to_last_vp(child)
-            return find_subject(node)
+            return node
+
+
+def get_object(tree):
+    obj_np_tree = get_object_np_tree(tree)
+
+    obj_tree = None
+    obj = None
+
+    if obj_np_tree is not None:
+        obj_tree = get_object_tree(tree)
+
+    if obj_tree is not None:
+        obj = get_subject(obj_tree)
+
+    return obj
+
+
+def get_object_params(tree):
+    obj_np_tree = get_object_np_tree(tree)
+
+    obj_tree = None
+    blah_tree = None
+    params = []
+
+    if obj_np_tree is not None:
+        obj_tree = get_object_tree(tree)
+
+    if obj_tree is not None:
+        blah_tree = get_subject_tree(obj_tree)
+
+    if blah_tree is not None:
+        params = get_subject_param_values(blah_tree)
+
+    return params
 
 
 def check_np_vp_in_s(tree):
@@ -108,11 +197,11 @@ def check_np_vp_in_s(tree):
 
 
 def get_sibling_labels(tree):
-    labels = []
-    for sibling in tree:
-        labels.append(sibling.label())
+    return [t.label() for t in tree]
 
-    return labels
+
+def get_direct_descendants(tree):
+    return [(t.label(), t[0]) for t in tree]
 
 
 def find_trees_to_analyze(tree):
@@ -133,7 +222,6 @@ def find_trees_to_analyze(tree):
 
 def check_tree(tree):
     labels = get_sibling_labels(tree)
-    # print labels
     if ('NP' in labels) and ('VP' in labels):
         return True
     elif ('WHNP' in labels) and ('S' in labels):
@@ -143,10 +231,12 @@ def check_tree(tree):
 
 
 def find_triple(tree):
-    subject = find_subject(tree)
+    subject = get_subject(tree)
+    subject_params = get_subject_params(tree)
     action = find_action(tree)
-    object = find_object(tree)
-    svo = SVO(subject, action, object)
+    object = get_object(tree)
+    object_params = get_object_params(tree)
+    svo = SVO(subject, subject_params, action, [], object, object_params)
     return svo
 
 
@@ -156,9 +246,9 @@ def find_triples(sentence):
     # t.pretty_print()
     trees = find_trees_to_analyze(t)
     for tree in trees:
-        # tree.pretty_print()
+        tree.pretty_print()
         svo = find_triple(tree)
-        # print svo.__str__()
+        print svo.__str__()
         triples.append(svo)
 
     return triples
