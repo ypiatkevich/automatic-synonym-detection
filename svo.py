@@ -2,13 +2,24 @@ from text_processing import *
 
 
 class SVO:
-    def __init__(self, subject='', action='', obj=''):
+    def __init__(self, subject='', subject_params=None, action='', action_params=None, obj='', obj_params=None):
+        if subject_params is None:
+            subject_params = []
+        if action_params is None:
+            action_params = []
+        if obj_params is None:
+            obj_params = []
         self.subject = self.get_formatted_value(subject)
+        self.subject_params = subject_params
         self.action = self.get_formatted_value(action)
+        self.action_params = action_params
         self.object = self.get_formatted_value(obj)
+        self.object_params = obj_params
 
     def __str__(self):
-        return '({0}, {1}, {2})'.format(self.subject, self.action, self.object)
+        return '{{\n\t{0}: {1},\n\t{2}: {3},\n\t{4}: {5}\n}}'.format(self.subject, self.subject_params, self.action,
+                                                                     self.action_params, self.object,
+                                                                     self.object_params)
 
     @property
     def subject(self):
@@ -19,6 +30,14 @@ class SVO:
         self.subject = self.get_formatted_value(value)
 
     @property
+    def subject_params(self):
+        return self.subject_params
+
+    @subject_params.setter
+    def subject_params(self, params):
+        self.subject_params = lemmatize_words(params)
+
+    @property
     def action(self):
         return self.action
 
@@ -27,12 +46,28 @@ class SVO:
         self.action = self.get_formatted_value(value)
 
     @property
+    def action_params(self):
+        return self.action_params
+
+    @action_params.setter
+    def action_params(self, params):
+        self.action_params = lemmatize_words(params)
+
+    @property
     def object(self):
         return self.object
 
     @object.setter
     def object(self, value):
         self.object = self.get_formatted_value(value)
+
+    @property
+    def object_params(self):
+        return self.object_params
+
+    @object_params.setter
+    def object_params(self, params):
+        self.object_params = lemmatize_words(params)
 
     @staticmethod
     def get_formatted_value(value):
