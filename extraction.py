@@ -121,16 +121,16 @@ def get_subject_param_values(tree):
                                                                                                   'CD']]
 
 
-def find_action(tree):
+def get_action(tree):
     if tree.label() in ['SBAR']:
         for sub in tree:
             if sub.label() in ['S']:
-                return get_action(sub)
+                return get_action_value(sub)
     else:
-        return get_action(tree)
+        return get_action_value(tree)
 
 
-def get_action(tree):
+def get_action_value(tree):
     for child in tree:
         if child.label() in ['VP']:
             node = move_to_last_vp(child)
@@ -234,7 +234,7 @@ def check_tree(tree):
 def get_triple(tree):
     subject = get_subject(tree)
     subject_params = get_subject_params(tree)
-    action = find_action(tree)
+    action = get_action(tree)
     object = get_object(tree)
     object_params = get_object_params(tree)
     svo = SVO(subject, subject_params, action, [], object, object_params)
