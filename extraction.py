@@ -121,22 +121,41 @@ def get_subject_param_values(tree):
                                                                                                   'CD']]
 
 
-def get_action(tree):
+def get_action_vp_parent_tree(tree):
     if tree.label() in ['SBAR']:
         for sub in tree:
             if sub.label() in ['S']:
-                return get_action_value(sub)
+                return sub
     else:
-        return get_action_value(tree)
+        return tree
 
 
-def get_action_value(tree):
+def get_action_tree(tree):
     for child in tree:
         if child.label() in ['VP']:
             node = move_to_last_vp(child)
-            for sibling in node:
-                if sibling.label() in ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']:
-                    return sibling[0]
+            return node
+
+
+def get_action_value(tree):
+    for sibling in tree:
+        if sibling.label() in ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']:
+            return sibling[0]
+
+
+def get_action(tree):
+    action_vp_parent_tree = get_action_vp_parent_tree(tree)
+
+    action_tree = None
+    action = None
+
+    if action_vp_parent_tree is not None:
+        action_tree = get_action_tree(action_vp_parent_tree)
+
+    if action_tree is not None:
+        action = get_action_value(action_tree)
+
+    return action
 
 
 def get_object_np_tree(tree):
@@ -156,18 +175,37 @@ def get_object_tree(tree):
 
 
 def get_object(tree):
-    obj_np_tree = get_object_np_tree(tree)
+    acion_vp_parent_tree = get_action_vp_parent_tree(tree)
 
-    obj_tree = None
+    action_tree = None
+    object_tree = None
     obj = None
 
-    if obj_np_tree is not None:
-        obj_tree = get_object_tree(tree)
+    if acion_vp_parent_tree is not None:
+        action_tree = get_action_tree(acion_vp_parent_tree)
 
-    if obj_tree is not None:
-        obj = get_subject(obj_tree)
+    if action_tree is not None:
+        object_tree = get_subject_tree(action_tree)
+
+    if object_tree is not None:
+        obj = get_subject_value(object_tree)
 
     return obj
+
+
+# def get_object(tree):
+#     obj_np_tree = get_object_np_tree(tree)
+#
+#     obj_tree = None
+#     obj = None
+#
+#     if obj_np_tree is not None:
+#         obj_tree = get_object_tree(tree)
+#
+#     if obj_tree is not None:
+#         obj = get_subject(obj_tree)
+#
+#     return obj
 
 
 def get_object_params(tree):
