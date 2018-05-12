@@ -71,12 +71,13 @@ def get_subject_np_paren_tree(tree):
     while not q.empty():
         cur_tree = q.get()
 
-        labels = get_sibling_labels(cur_tree)
+        labels = get_child_labels(cur_tree)
         if ('WHNP' in labels) and ('S' in labels):
             cur_tree = cur_tree.parent()
             return cur_tree
 
         if cur_tree.label() in ['NP']:
+            cur_tree = move_to_last_np(cur_tree)
             cur_tree = cur_tree.parent()
             return cur_tree
 
@@ -94,7 +95,7 @@ def get_subject_tree(tree):
 
 
 def get_subject_value(tree):
-    labels = get_sibling_labels(tree)
+    labels = get_child_labels(tree)
     if labels.__contains__('CC'):
         ind = labels.index('CC')
     else:
@@ -106,7 +107,7 @@ def get_subject_value(tree):
 
 
 def get_subject_param_values(tree):
-    labels = get_sibling_labels(tree)
+    labels = get_child_labels(tree)
     if labels.__contains__('CC'):
         ind = labels.index('CC')
     else:
@@ -196,7 +197,7 @@ def check_np_vp_in_s(tree):
     return False
 
 
-def get_sibling_labels(tree):
+def get_child_labels(tree):
     return [t.label() for t in tree]
 
 
@@ -204,7 +205,7 @@ def get_direct_descendants(tree):
     return [(t.label(), t[0]) for t in tree]
 
 
-def find_trees_to_analyze(tree):
+def get_trees_to_analyze(tree):
     trees = []
     q = Queue.LifoQueue()
     q.put(tree)
@@ -221,7 +222,7 @@ def find_trees_to_analyze(tree):
 
 
 def check_tree(tree):
-    labels = get_sibling_labels(tree)
+    labels = get_child_labels(tree)
     if ('NP' in labels) and ('VP' in labels):
         return True
     elif ('WHNP' in labels) and ('S' in labels):
@@ -230,7 +231,7 @@ def check_tree(tree):
         return False
 
 
-def find_triple(tree):
+def get_triple(tree):
     subject = get_subject(tree)
     subject_params = get_subject_params(tree)
     action = find_action(tree)
@@ -240,14 +241,14 @@ def find_triple(tree):
     return svo
 
 
-def find_triples(sentence):
+def get_triples(sentence):
     triples = []
     t = get_tree(sentence)
     # t.pretty_print()
-    trees = find_trees_to_analyze(t)
+    trees = get_trees_to_analyze(t)
     for tree in trees:
         tree.pretty_print()
-        svo = find_triple(tree)
+        svo = get_triple(tree)
         print svo.__str__()
         triples.append(svo)
 
