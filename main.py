@@ -43,24 +43,12 @@ from tripple_processing import *
 #        "libraries you use and also other individuals to join. Membership conveys many benefits for you, and for the " \
 #        "wider academic community concerned for the understanding of medieval texts. "
 
-text = "An electrical resistance apparatus adapted for the measurement of the position of the throttle blade of an " \
-       "internal combustion engine is disclosed. The apparatus includes a generally annular housing which has an " \
-       "inside surface that supports a flexible resistive element. The resistive element comprises a flexible web on " \
-       "which two parallel resistive tracks have been overlaid. A generally cylindrical rotor mounts within the " \
-       "housing and electrically couples the two tracks by means of a U-shaped conductive wiper that bridges the " \
-       "separation between the resistive tracks. The rotor is mechanically connected to the throttle blade of the " \
-       "internal combustion engine and rotates therewith. By applying the leads of a power supply to one resistive " \
-       "track and reading a voltage signal from the other resistive track, a potentiometric signal related to the " \
-       "position of the throttle blade is developed. Integral with the resistive track developing the position signal " \
-       "is a protection resistor providing shorting protection in case of the misconnection of the power and signal " \
-       "terminals. "
-
-file_name = "tmp_test.txt"
+file_name = 'corpora/train.txt'
 
 sents = read_file(file_name)
 triples = []
 for sent in sents:
-    triples += find_triples(sent)
+    triples += get_triples(sent)
 
 for triple in triples:
     print triple.__str__()
@@ -80,15 +68,3 @@ candidates = get_candidates(matrix)
 candidates = get_filtered_candidates(candidates, 2)
 for key, value in candidates.iteritems():
     print_subject_candidate_names(key, triples)
-
-
-# sentences = [
-#     'A rare black squirrel has become a regular visitor to a suburban garden',
-#     'The apparatus includes a resistive element having an impedance',
-#     'Some mice were hunted by the cat',
-#     'A man who has a house on the island bought a large plane',
-#     'They win the lottery and after that they bought many cola',
-#     'After she ate the pie, Emma visited Tony who had beautiful eyes',
-#     'The metal is made up of irregularly shaped grains, and these tiny grains ,are the bundling blocks of the metal',
-#     'He has already read this book'
-# ]
