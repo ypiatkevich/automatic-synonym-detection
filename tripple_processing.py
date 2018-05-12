@@ -6,23 +6,6 @@ def filter_triples(triples):
     return [triple for triple in triples if triple.valid()]
 
 
-# def subject_verb_frequency_matrix(triples):
-#     matrix = [['']]
-#     filtered_triples = filter_triples(triples)
-#     for triple in filtered_triples:
-#         if triple.subject not in matrix[0]:
-#             matrix[0].append(triple.subject)
-#         if triple.action not in matrix:
-#             row = [triple.action]
-#             s_ind = matrix[0].index(triple.subject)
-#             if len(row) <= s_ind:
-#                 row.append(1)
-#             else:
-#                 row[s_ind] += 1
-#             matrix.append(row)
-#
-#     return matrix
-
 def subject_verb_frequency_matrix(triples):
     filtered_triples = filter_triples(triples)
     verbs = get_verbs(filtered_triples)
