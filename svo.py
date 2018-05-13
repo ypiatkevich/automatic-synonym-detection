@@ -17,7 +17,7 @@ class SVO:
         self.object_params = [(param[0], self.get_formatted_value(param[1])) for param in obj_params]
 
     def __str__(self):
-        return '{{\n\t{0}: {1},\n\t{2}: {3},\n\t{4}: {5}\n}}'.format(self.subject, self.subject_params, self.action,
+        return '{0}: {1},\n{2}: {3},\n{4}: {5}\n'.format(self.subject, self.subject_params, self.action,
                                                                      self.action_params, self.object,
                                                                      self.object_params)
 
