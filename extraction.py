@@ -88,6 +88,12 @@ def get_subject_np_paren_tree(tree):
 
 
 def get_subject_tree(tree):
+    labels = get_child_labels(tree)
+    if not any(m in labels for m in ['NP', 'PP']):
+        for child in tree:
+            if child.label() in ['S']:
+                tree = child
+
     for child in tree:
         if child.label() in ['NP', 'PP']:
             node = move_to_last_np(child)
@@ -164,22 +170,6 @@ def get_action(tree):
     return action
 
 
-def get_object_np_tree(tree):
-    if tree.label() in ['SBAR']:
-        for sub in tree:
-            if sub.label() in ['S']:
-                return sub
-    else:
-        return tree
-
-
-def get_object_tree(tree):
-    for child in tree:
-        if child.label() in ['VP']:
-            node = move_to_last_vp(child)
-            return node
-
-
 def get_object(tree):
     acion_vp_parent_tree = get_action_vp_parent_tree(tree)
 
@@ -197,21 +187,6 @@ def get_object(tree):
         obj = get_subject_value(object_tree)
 
     return obj
-
-
-# def get_object(tree):
-#     obj_np_tree = get_object_np_tree(tree)
-#
-#     obj_tree = None
-#     obj = None
-#
-#     if obj_np_tree is not None:
-#         obj_tree = get_object_tree(tree)
-#
-#     if obj_tree is not None:
-#         obj = get_subject(obj_tree)
-#
-#     return obj
 
 
 def get_object_params(tree):
