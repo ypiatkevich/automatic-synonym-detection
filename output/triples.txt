@@ -1,0 +1,24 @@
+fuel: [(u'NNP', u'diesel')],
+use: [],
+generator: [(u'JJ', u'diesel'), (u'NN', u'engine')]
+fuel: [],
+use: [],
+engine: [(u'JJ', u'internal'), (u'NN', u'combustion')]
+gasoline: [],
+use: [],
+engine: [(u'JJ', u'internal'), (u'NN', u'combustion')]
+fuel: [(u'NNP', u'diesel')],
+produce: [],
+emission: [(u'JJ', u'many'), (u'JJ', u'harmful')]
+fuel: [],
+produce: [],
+emission: [(u'JJ', u'many'), (u'JJ', u'harmful')]
+gasoline: [],
+be: [],
+None: []
+gasoline: [],
+contain: [],
+ethanol: []
+petrol: [(u'NNP', u'unleaded')],
+store: [],
+container: [(u'JJ', u'green')]
