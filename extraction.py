@@ -98,6 +98,9 @@ def get_subject_value(tree):
     labels = get_child_labels(tree)
     if labels.__contains__('CC'):
         ind = labels.index('CC')
+        sub_labels = labels[0:ind]
+        if not any(m in sub_labels for m in ['NN', 'NNS', 'PRP', 'NNP', 'NNPS']):
+            ind = len(tree)
     else:
         ind = len(tree)
 
@@ -110,6 +113,9 @@ def get_subject_param_values(tree):
     labels = get_child_labels(tree)
     if labels.__contains__('CC'):
         ind = labels.index('CC')
+        sub_labels = labels[0:ind]
+        if not any(m in sub_labels for m in ['NN', 'NNS', 'PRP', 'NNP', 'NNPS']):
+            ind = len(tree)
     else:
         ind = len(tree)
 
@@ -209,20 +215,20 @@ def get_object(tree):
 
 
 def get_object_params(tree):
-    obj_np_tree = get_object_np_tree(tree)
+    acion_vp_parent_tree = get_action_vp_parent_tree(tree)
 
-    obj_tree = None
-    blah_tree = None
+    action_tree = None
+    object_tree = None
     params = []
 
-    if obj_np_tree is not None:
-        obj_tree = get_object_tree(tree)
+    if acion_vp_parent_tree is not None:
+        action_tree = get_action_tree(acion_vp_parent_tree)
 
-    if obj_tree is not None:
-        blah_tree = get_subject_tree(obj_tree)
+    if action_tree is not None:
+        object_tree = get_subject_tree(action_tree)
 
-    if blah_tree is not None:
-        params = get_subject_param_values(blah_tree)
+    if object_tree is not None:
+        params = get_subject_param_values(object_tree)
 
     return params
 

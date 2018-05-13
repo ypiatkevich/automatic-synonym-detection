@@ -13,5 +13,7 @@ Gasoline produces 8.74 kilograms of carbon dioxide.
 Diesel also poses a reduced risk of fire during an accident and produces fewer emissions than gas.
 In the past, diesel fuel contained higher quantities of sulfur.
 The engine and generator will use diesel and not petrol as fuel.
+Special low-temperature diesel contains additives  to keep  it liquid  at      lower     temperatures  .
 Fossil fuels contain high percentages of carbon and include coal, petroleum, and natural gas.
+Fuel gas is contrasted with liquid fuels and from solid fuels
 The important properties which are used to characterize diesel fuel include cetane number (or cetane index), fuel volatility, density, viscosity, cold behavior, and sulfur content.
