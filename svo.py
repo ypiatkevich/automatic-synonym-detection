@@ -1,8 +1,12 @@
 from text_processing import *
+import itertools
 
 
 class SVO:
+    new_id = itertools.count().next
+
     def __init__(self, subject='', subject_params=None, action='', action_params=None, obj='', obj_params=None):
+        self.id = SVO.new_id()
         if subject_params is None:
             subject_params = []
         if action_params is None:
@@ -18,8 +22,8 @@ class SVO:
 
     def __str__(self):
         return '{0}: {1},\n{2}: {3},\n{4}: {5}\n'.format(self.subject, self.subject_params, self.action,
-                                                                     self.action_params, self.object,
-                                                                     self.object_params)
+                                                         self.action_params, self.object,
+                                                         self.object_params)
 
     @property
     def subject(self):
@@ -73,5 +77,8 @@ class SVO:
     def get_formatted_value(value):
         return lemmatize_word(value.lower()) if value is not None else None
 
-    def valid(self):
-        return self.subject is not None and self.action is not None and self.object is not None
+    def s_v_valid(self):
+        return self.subject is not None and self.action is not None
+
+    def v_o_valid(self):
+        return self.action is not None and self.object is not None
