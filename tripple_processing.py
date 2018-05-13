@@ -71,37 +71,3 @@ def get_verbs(triples):
 
 def get_objects(triples):
     return list(set(triple.object for triple in triples))
-
-
-def get_candidates(matrix):
-    non_zero_ind_matrix = [np.nonzero(row)[0] for row in matrix]
-    non_zero_ind_matrix = [row for row in non_zero_ind_matrix if len(row) > 1]
-    non_zero_ind_matrix = [list(itertools.combinations(row, 2)) for row in non_zero_ind_matrix]
-    pairs = {}
-    for row in non_zero_ind_matrix:
-        for pair in row:
-            if pair not in pairs:
-                pairs[pair] = 1
-            else:
-                pairs[pair] += 1
-
-    return pairs
-
-
-def get_filtered_candidates(candidates, min):
-    dict = {}
-    for key, value in candidates.iteritems():
-        if value >= min:
-            dict[key] = value
-
-    return dict
-
-
-def print_subject_candidate_names(candidate, triples):
-    subjects = get_subjects(triples)
-    print '{0} - {1}'.format(subjects[candidate[0]], subjects[candidate[1]])
-
-
-def print_object_candidate_names(candidate, triples):
-    subjects = get_objects(triples)
-    print '{0} - {1}'.format(subjects[candidate[0]], subjects[candidate[1]])
