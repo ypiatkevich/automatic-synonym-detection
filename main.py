@@ -1,7 +1,10 @@
+import sys
+
 from extraction import *
 from text_processing import *
 from corpora_processing import *
 from tripple_processing import *
+from synonym_recognition import *
 
 # text = "An instruction set architecture (ISA) is the interface between the computer's software and hardware and also " \
 #        "can be viewed as the programmer's view of the machine. Computers do not understand high-level programming " \
@@ -47,24 +50,24 @@ file_name = 'corpora/train.txt'
 
 sents = read_file(file_name)
 triples = []
+
 for sent in sents:
     triples += get_triples(sent)
 
 for triple in triples:
     print triple.__str__()
 
-matrix = subject_verb_frequency_matrix(triples)
+write_triples_to_file(triples)
+
+s_v_matrix = subject_verb_frequency_matrix(triples)
 
 verbs = get_verbs(triples)
 subjects = get_subjects(triples)
 
-print subjects
-for i in range(len(verbs)):
-    print '{0} : {1}'.format(verbs[i], matrix[i])
 
+candidates = get_candidates(s_v_matrix)
+print candidates
 print '\n'
-
-candidates = get_candidates(matrix)
 candidates = get_filtered_candidates(candidates, 2)
 for key, value in candidates.iteritems():
     print_subject_candidate_names(key, triples)

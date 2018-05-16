@@ -1,24 +1,45 @@
 fuel: [(u'NNP', u'diesel')],
-use: [],
-generator: [(u'JJ', u'diesel'), (u'NN', u'engine')]
-fuel: [],
-use: [],
-engine: [(u'JJ', u'internal'), (u'NN', u'combustion')]
-gasoline: [],
-use: [],
-engine: [(u'JJ', u'internal'), (u'NN', u'combustion')]
-fuel: [(u'NNP', u'diesel')],
 produce: [],
 emission: [(u'JJ', u'many'), (u'JJ', u'harmful')]
-fuel: [],
-produce: [],
-emission: [(u'JJ', u'many'), (u'JJ', u'harmful')]
-gasoline: [],
-be: [],
-None: []
-gasoline: [],
-contain: [],
-ethanol: []
-petrol: [(u'NNP', u'unleaded')],
-store: [],
-container: [(u'JJ', u'green')]
+emission: [(u'JJ', u'many'), (u'JJ', u'harmful')],
+pollute: [],
+environment: []
+squirrel: [(u'JJ', u'rare'), (u'JJ', u'black')],
+become: [],
+visitor: [(u'JJ', u'regular')]
+apparatus: [],
+include: [],
+element: [(u'JJ', u'resistive')]
+element: [(u'JJ', u'resistive')],
+have: [],
+impedance: []
+mouse: [],
+hunt: [],
+cat: []
+man: [],
+buy: [],
+plane: [(u'JJ', u'large')]
+man: [],
+have: [],
+house: []
+they: [],
+win: [],
+lottery: []
+they: [],
+buy: [],
+cola: [(u'JJ', u'many')]
+emma: [],
+visit: [],
+tony: []
+tony: [],
+have: [],
+eye: [(u'JJ', u'beautiful')]
+she: [],
+eat: [],
+pie: []
+metal: [],
+make: [],
+grain: [(u'JJ', u'tiny')]
+he: [],
+read: [],
+book: []

@@ -1,8 +1,13 @@
+The rotor is mechanically connected to the throttle blade of the internal combustion engine and rotates therewith.
 The resistive element includes a first contact point connected to a capacitor terminal, a second contact point connected to a circuit board plane, and resistive material connected to the first and second contact points.
+Integral with the resistive track developing the position signal is a protection resistor providing shorting protection in case of the misconnection of the power and signal terminals.
 An electrical resistance apparatus adapted for the measurement of the position of the throttle blade of an internal combustion engine is disclosed.
 A generally cylindrical rotor mounts within the housing and electrically couples the two tracks by means of a U-shaped conductive wiper that bridges the separation between the resistive tracks.
-The rotor is mechanically connected to the throttle blade of the internal combustion engine and rotates therewith.
-Integral with the resistive track developing the position signal is a protection resistor providing shorting protection in case of the misconnection of the power and signal terminals.
+The engine and generator will use diesel and not petrol as fuel.
+Special low-temperature diesel contains additives  to keep  it liquid  at      lower     temperatures  .
+Fuel gas is contrasted with liquid fuels and from solid fuels
+
+Many industrial facilities  ,  large     buildings  ,  institutional     facilities  ,  hospitals  ,  and electric     utilities have diesel     generators for backup and emergency power supply  .
 
 Diesel fuels involves converting the triglycerides  in vegetable oil.
 Sometimes, gasoline also contains ethanol as an alternative fuel, for economic, political or environmental reasons.
@@ -12,8 +17,5 @@ Gasoline, when used in high-compression internal combustion engines, tends to au
 Gasoline produces 8.74 kilograms of carbon dioxide.
 Diesel also poses a reduced risk of fire during an accident and produces fewer emissions than gas.
 In the past, diesel fuel contained higher quantities of sulfur.
-The engine and generator will use diesel and not petrol as fuel.
-Special low-temperature diesel contains additives  to keep  it liquid  at      lower     temperatures  .
 Fossil fuels contain high percentages of carbon and include coal, petroleum, and natural gas.
-Fuel gas is contrasted with liquid fuels and from solid fuels
 The important properties which are used to characterize diesel fuel include cetane number (or cetane index), fuel volatility, density, viscosity, cold behavior, and sulfur content.
