@@ -1,3 +1,5 @@
+import time
+
 from extraction import *
 from text_processing import *
 from corpora_processing import *
@@ -43,15 +45,30 @@ from tripple_processing import *
 #        "libraries you use and also other individuals to join. Membership conveys many benefits for you, and for the " \
 #        "wider academic community concerned for the understanding of medieval texts. "
 
-file_name = 'corpora/train.txt'
+start_time = time.time()
+
+print '\n'
+print '\n'
+print '\n'
+print '\n'
+print '{0} - {1}'.format('fuel', 'gasoline')
+print '{0} - {1}'.format('fuel', 'combustible')
+print '{0} - {1}'.format('diesel fuel', 'combustible')
+print '{0} - {1}'.format('gasoline', 'combustible')
+print '{0} - {1}'.format('fuel', 'diesel')
+print '{0} - {1}'.format('diesel fuel', 'diesel engine')
+print '{0} - {1}'.format('diesel', 'engine')
+print '{0} - {1}'.format('engine', 'vehicle')
+
+file_name = 'corpora/final_v2.txt'
 
 sents = read_file(file_name)
 triples = []
 for sent in sents:
     triples += get_triples(sent)
 
-for triple in triples:
-    print triple.__str__()
+# for triple in triples:
+#     print triple.__str__()
 
 matrix = subject_verb_frequency_matrix(triples)
 
@@ -65,6 +82,10 @@ for i in range(len(verbs)):
 print '\n'
 
 candidates = get_candidates(matrix)
-candidates = get_filtered_candidates(candidates, 2)
+candidates = get_filtered_candidates(candidates, 3)
 for key, value in candidates.iteritems():
     print_subject_candidate_names(key, triples)
+
+print len(triples)
+print len(sents)
+print("--- %s seconds ---" % (time.time() - start_time))
